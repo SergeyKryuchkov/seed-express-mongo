@@ -18,7 +18,7 @@ const swaggerSpec = swaggerJSDoc({
             'https://chat-circle-dev.herokuapp.com/). All responses are formatted in JSON.'
         },
         produces: ['application/json'],
-        consumes: ['application/json'],
+        // consumes: ['application/json'],
         securityDefinitions: {
             jwt: {
                 type: 'apiKey',

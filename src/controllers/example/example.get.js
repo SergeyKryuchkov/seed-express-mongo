@@ -3,7 +3,7 @@ const errors = require('../../errors');
 const router = require('express').Router();
 /**
  *  @swagger
- *  /v1/example/{uuid}:
+ *  /example/{uuid}:
  *    get:
  *      tags:
  *        - example
