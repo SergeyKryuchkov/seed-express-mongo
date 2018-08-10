@@ -12,11 +12,13 @@ npm run serve
 ### Environment
 
 #### App setup
-- AUTO_JOBS: [TRUE/FALSE] auto start jobs
-- SKIP_JOBS: list of jobs filenames to skip
+
 
 #### Database credentials
-- DATABASE_URL = postgres://[user]:[password]@[host]:[port]/[db_name]
+DB_HOST=[db_host]
+DB_USER=[db_user]
+DB_PASSWORD=[dp_pass]
+DB_NAME=[db_name]
 
 ### Development
 
