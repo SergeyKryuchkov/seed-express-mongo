@@ -10,7 +10,7 @@ const Example = require('../../models/example');
  *        - example
  *      description: get example record
  *      parameters:
- *        - name: uuid
+ *        - name: id
  *          description: example primary key
  *          in: path
  *          type: string
@@ -21,11 +21,10 @@ const Example = require('../../models/example');
  *          description: example received
  */
 
-router.get('/example/:uuid',
+router.get('/example/:id',
     // authenticate(),
     errors.wrap(async (req, res) => {
-        const id = req.params.id;
-        const task = await Task.find({_id:id});
+        const task = await Example.find({_id:req.params.id});
         res.json(task);
     })
 );

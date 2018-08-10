@@ -1,15 +1,17 @@
 const authenticate = require('../../middleware/authenticate');
 const errors = require('../../errors');
 const router = require('express').Router();
+const Example = require('../../models/example');
+
 /**
  *  @swagger
- *  /example/{uuid}:
+ *  /example/{id}:
  *    delete:
  *      tags:
  *        - example
  *      description: delete example
  *      parameters:
- *        - name: uuid
+ *        - name: id
  *          description: example primary key
  *          in: path
  *          type: string
@@ -20,9 +22,12 @@ const router = require('express').Router();
  *          description: example was deleted
  */
 
-router.delete('/example/:uuid',
+router.delete('/example/:id',
     // authenticate(),
     errors.wrap(async (req, res) => {
+        const example = await Example.findById(req.params.id);
+        if (!example) throw errors.NotFoundError('Item not found');
+        example.remove();
         res.sendStatus(204);
     })
 );
