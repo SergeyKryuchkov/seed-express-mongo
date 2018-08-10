@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const errors = require('../../errors');
 const authenticate = require('../../middleware/authenticate');
+const Example = require('../../models/example');
 /**
  *  @swagger
  *  /example:
@@ -9,8 +10,8 @@ const authenticate = require('../../middleware/authenticate');
  *        - example
  *      description: save report
  *      parameters:
- *        - name: name
- *          default: ReportName
+ *        - name: value
+ *          default: value
  *          required: true
  *          in: formData
  *          type: string
@@ -22,7 +23,7 @@ const authenticate = require('../../middleware/authenticate');
 router.post('/example',
     // authenticate(),
     errors.wrap(async (req, res) => {
-        const example = req.body;
+        const example = await Example(req.body).save();
         res.json(example);
     })
 );

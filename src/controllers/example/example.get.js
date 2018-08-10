@@ -1,6 +1,7 @@
 const authenticate = require('../../middleware/authenticate');
 const errors = require('../../errors');
 const router = require('express').Router();
+const Example = require('../../models/example');
 /**
  *  @swagger
  *  /example/{uuid}:
@@ -23,8 +24,9 @@ const router = require('express').Router();
 router.get('/example/:uuid',
     // authenticate(),
     errors.wrap(async (req, res) => {
-        const example = {};
-        res.json(example);
+        const id = req.params.id;
+        const task = await Task.find({_id:id});
+        res.json(task);
     })
 );
 
