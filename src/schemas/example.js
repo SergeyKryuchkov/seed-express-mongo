@@ -7,8 +7,8 @@ const exampleSchema = new Schema({
     // },
     value: {
         type: String,
-        minlength:1,
-        maxlength:30,
+        minlength: 1,
+        maxlength: 30,
     },
 });
 
