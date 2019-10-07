@@ -5,6 +5,7 @@
 ### Installation
 
 Server:
+create .env file in the application root and fill with DB credentials, or set crecentials in execution environment. 
 ```
 npm install
 npm run serve
