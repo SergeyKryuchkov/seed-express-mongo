@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const exampleSchema = new Schema({
+const ExampleSchema = new Schema({
     value: {
         type: String,
         minlength:1,
@@ -9,5 +9,4 @@ const exampleSchema = new Schema({
     },
 });
 
-const Example = mongoose.model('Example', exampleSchema);
-module.exports = Example;
+module.exports = mongoose.model('Example', ExampleSchema);

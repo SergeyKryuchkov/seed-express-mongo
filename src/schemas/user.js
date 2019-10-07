@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
-const errors = require('../errors');
+const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const _ = require('lodash');
+const errors = require('../errors');
 
 const UserSchema = new Schema({
     _id: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    name: {
-        type: String,
-        minlength:1,
-        maxlength:30,
+    email: String,
+    validated_email: {
+        type: Boolean,
+        default: false
     },
     password: {
         type: String,
@@ -40,16 +40,12 @@ UserSchema.methods.generateToken = function () {
 };
 
 /**
- * Use for password setter
  * @param {string} password
- * @return {null}
+ * @return {any} hash
  */
-function hashPassword (password) {
-    return crypto
-          .createHmac('sha512', process.env.SALT || 'salt')
-        .update(password)
-        .digest('hex');
-}
+UserSchema.statics.hashPassword = (password) => {
+    return hashPassword(password);
+};
 
 /**
  * @param {string} email
@@ -65,8 +61,15 @@ UserSchema.statics.authenticate = async function (email, password) {
 };
 
 UserSchema.statics.publicAttributes = function () {
-    return [..._.without(_.keys(UserSchema.paths), '__v', 'password', 'createdAt', 'updatedAt' )];
+    return [..._.without(_.keys(UserSchema.paths), '__v', 'password', 'createdAt', 'updatedAt')];
 };
+
+function hashPassword(password) {
+    return crypto
+        .createHmac('sha512', process.env.SALT || 'salt')
+        .update(password)
+        .digest('hex');
+}
 
 module.exports = mongoose.model('User', UserSchema);
 

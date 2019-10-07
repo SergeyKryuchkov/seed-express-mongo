@@ -1,7 +1,7 @@
 const authenticate = require('../../middleware/authenticate');
 const errors = require('../../errors');
 const router = require('express').Router();
-const Example = require('../../models/example');
+const Example = require('../../schemas/example');
 /**
  *  @swagger
  *  /example/{uuid}:
