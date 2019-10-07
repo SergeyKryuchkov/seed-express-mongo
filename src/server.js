@@ -9,8 +9,9 @@ const config = require('config');
 const app = express();
 const mongoose = require('mongoose');
 try {
-    mongoose.connect(`mongodb://${config.db.host}:27017`, config.db.credentials);
-} catch(e) {
+    // mongoose.connect(`mongodb://${config.db.host}:${config.db.port}`, config.db.credentials);
+    mongoose.connect('mongodb://someuser:abcd1234@ds016148.mlab.com:16148/list_todo', {useNewUrlParser: true});
+} catch (e) {
     console.error(e);
 }
 

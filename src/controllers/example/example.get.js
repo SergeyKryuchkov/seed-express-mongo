@@ -24,7 +24,7 @@ const Example = require('../../models/example');
 router.get('/example/:id',
     // authenticate(),
     errors.wrap(async (req, res) => {
-        const task = await Example.find({_id:req.params.id});
+        const task = await Example.find({_id: req.params.id});
         res.json(task);
     })
 );

@@ -26,7 +26,7 @@ router.delete('/example/:id',
     // authenticate(),
     errors.wrap(async (req, res) => {
         const example = await Example.findById(req.params.id);
-        if (!example) throw errors.NotFoundError('Item not found');
+        if (!example) throw errors.NotFoundError('example not found');
         example.remove();
         res.sendStatus(204);
     })

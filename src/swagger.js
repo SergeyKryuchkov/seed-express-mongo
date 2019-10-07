@@ -2,7 +2,13 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const options = {
     swaggerOptions: {
-        authAction :{ JWT: {name: "JWT", schema: {type: "apiKey", in: "header", name: "Authorization", description: ""}, value: "Bearer <JWT>"} }
+        authAction: {
+            JWT: {
+                name: 'JWT',
+                schema: {type: 'apiKey', in: 'header', name: 'Authorization', description: ''},
+                value: 'Bearer <JWT>'
+            }
+        }
     }
 };
 
@@ -27,14 +33,14 @@ const swaggerSpec = swaggerJSDoc({
             }
         },
         security: [
-            { jwt: [] }
+            {jwt: []}
         ]
     },
-    apis: ['./src/controllers/**/*.js'],
+    apis: ['./src/controllers/**/*.js', './docs/*'],
 });
 
 module.exports = (app) => {
-    app.get('/api-docs.json', function(req, res) {
+    app.get('/api-docs.json', function (req, res) {
         res.setHeader('Content-Type', 'application/json');
         res.send(swaggerSpec);
     });

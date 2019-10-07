@@ -1,0 +1,51 @@
+swagger: "2.0"
+info:
+    title: Sample API
+description: API description in Markdown.
+    version: 1.0.0
+host: api.example.com
+schemes:
+    - https
+
+paths:
+    /users:
+get:
+    summary: Returns a list of users.
+    description: Optional extended description in Markdown.
+    produces:
+- application/json
+responses:
+    200:
+description: OK
+schema:
+    $ref: '#/definitions/Test1'
+403:
+description:
+    schema:
+        $ref: '#/definitions/Test3'
+
+definitions:
+    Test1:
+        type: object
+properties:
+    code:
+        type: integer
+format: int32
+message:
+    type: string
+Test2:
+    type: object
+properties:
+    id:
+        type: integer
+format: int64
+name:
+    type: string
+Test3:
+    type: object
+properties:
+    id:
+        type: integer
+format: int64
+name:
+    type: string
